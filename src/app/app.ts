@@ -1,12 +1,29 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
   templateUrl: './app.html',
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('lab-tracker-web');
+  private http = inject(HttpClient);
+
+  conectado = signal<boolean | null>(null);
+  mensaje = signal('Conectando con el backend...');
+
+  constructor() {
+    this.http
+      .get<{ app: string; version: string }>('/api/')
+      .subscribe({
+        next: (r) => {
+          this.conectado.set(true);
+          this.mensaje.set(`${r.app} (v${r.version})`);
+        },
+        error: () => {
+          this.conectado.set(false);
+          this.mensaje.set('No se pudo conectar con el backend');
+        },
+      });
+  }
 }
