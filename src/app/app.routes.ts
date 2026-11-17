@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Shell } from './layout/shell';
 import { Placeholder } from './shared/placeholder';
+import { Laboratorios } from './laboratorios/laboratorios';
 
 export const routes: Routes = [
   {
@@ -9,7 +10,7 @@ export const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', component: Placeholder, data: { titulo: 'Dashboard' } },
-      { path: 'laboratorios', component: Placeholder, data: { titulo: 'Laboratorios' } },
+      { path: 'laboratorios', component: Laboratorios },
       { path: 'puestos', component: Placeholder, data: { titulo: 'Puestos' } },
       { path: 'equipos', component: Placeholder, data: { titulo: 'Equipos' } },
       { path: 'horarios', component: Placeholder, data: { titulo: 'Horarios' } },
