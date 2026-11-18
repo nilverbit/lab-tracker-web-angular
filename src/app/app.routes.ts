@@ -5,6 +5,7 @@ import { Laboratorios } from './laboratorios/laboratorios';
 import { Puestos } from './puestos/puestos';
 import { Equipos } from './equipos/equipos';
 import { Horarios } from './horarios/horarios';
+import { Incidentes } from './incidentes/incidentes';
 
 export const routes: Routes = [
   {
@@ -17,7 +18,7 @@ export const routes: Routes = [
       { path: 'puestos', component: Puestos },
       { path: 'equipos', component: Equipos },
       { path: 'horarios', component: Horarios },
-      { path: 'incidentes', component: Placeholder, data: { titulo: 'Incidentes' } }
+      { path: 'incidentes', component: Incidentes }
     ]
   },
   { path: '**', redirectTo: '' }
