@@ -4,6 +4,7 @@ import { Placeholder } from './shared/placeholder';
 import { Laboratorios } from './laboratorios/laboratorios';
 import { Puestos } from './puestos/puestos';
 import { Equipos } from './equipos/equipos';
+import { Horarios } from './horarios/horarios';
 
 export const routes: Routes = [
   {
@@ -15,9 +16,9 @@ export const routes: Routes = [
       { path: 'laboratorios', component: Laboratorios },
       { path: 'puestos', component: Puestos },
       { path: 'equipos', component: Equipos },
-      { path: 'horarios', component: Placeholder, data: { titulo: 'Horarios' } },
-      { path: 'incidentes', component: Placeholder, data: { titulo: 'Incidentes' } },
-    ],
+      { path: 'horarios', component: Horarios },
+      { path: 'incidentes', component: Placeholder, data: { titulo: 'Incidentes' } }
+    ]
   },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '' }
 ];

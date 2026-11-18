@@ -125,14 +125,14 @@ export class Equipos implements OnInit {
       : this.equipoService.getAll();
       
     peticion.subscribe({
-      next: (res) => {
+      next: (res: any) => {
         let filtrados = res;
         if (!this.labSeleccionado && this.tipoSeleccionado) {
-           filtrados = res.filter(e => e.tipo === this.tipoSeleccionado);
+           filtrados = res.filter((e: any) => e.tipo === this.tipoSeleccionado);
         }
         this.datos.set(filtrados);
       },
-      error: (err) => this.notify.error(err)
+      error: (err: any) => this.notify.error(err)
     });
   }
 
@@ -153,7 +153,7 @@ export class Equipos implements OnInit {
             this.notify.ok('Equipo eliminado');
             this.cargar();
           },
-          error: (err) => this.notify.error(err)
+          error: (err: any) => this.notify.error(err)
         });
       }
     });

@@ -107,7 +107,7 @@ export class EquipoDialog implements OnInit {
   }
 
   cargarPuestos(labId: number) {
-    this.wsService.getByLaboratorio(labId).subscribe(ws => this.puestos = ws);
+    this.wsService.getByLaboratorio(labId).subscribe((ws: any) => this.puestos = ws);
   }
 
   guardar() {
@@ -121,7 +121,7 @@ export class EquipoDialog implements OnInit {
         this.notify.ok(`Equipo ${this.data ? 'actualizado' : 'creado'}`);
         this.dialogRef.close(true);
       },
-      error: (err) => this.notify.error(err)
+      error: (err: any) => this.notify.error(err)
     });
   }
 }
