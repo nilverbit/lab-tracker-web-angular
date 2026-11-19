@@ -8,6 +8,7 @@ import { Equipos } from './equipos/equipos';
 import { TiposEquipo } from './tipos-equipo/tipos-equipo';
 import { Licencias } from './licencias/licencias';
 import { Horarios } from './horarios/horarios';
+import { Alumnos } from './alumnos/alumnos';
 import { Incidentes } from './incidentes/incidentes';
 import { authGuard, guestGuard, roleGuard } from './core/guards/auth.guard';
 
@@ -48,8 +49,7 @@ export const routes: Routes = [
       { path: 'horarios', component: Horarios },
       {
         path: 'alumnos',
-        component: Placeholder,
-        data: { titulo: 'Gestión de Alumnos' },
+        component: Alumnos,
         canActivate: [roleGuard('admin', 'gestion_laboratorios', 'docente')],
       },
       { path: 'incidentes', component: Incidentes },
