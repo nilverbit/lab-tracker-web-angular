@@ -5,6 +5,8 @@ import { Placeholder } from './shared/placeholder';
 import { Laboratorios } from './laboratorios/laboratorios';
 import { Puestos } from './puestos/puestos';
 import { Equipos } from './equipos/equipos';
+import { TiposEquipo } from './tipos-equipo/tipos-equipo';
+import { Licencias } from './licencias/licencias';
 import { Horarios } from './horarios/horarios';
 import { Incidentes } from './incidentes/incidentes';
 import { authGuard, guestGuard, roleGuard } from './core/guards/auth.guard';
@@ -35,14 +37,12 @@ export const routes: Routes = [
       },
       {
         path: 'tipos-equipo',
-        component: Placeholder,
-        data: { titulo: 'Catálogo de Tipos de Equipo' },
+        component: TiposEquipo,
         canActivate: [roleGuard('admin', 'gestion_laboratorios')],
       },
       {
         path: 'licencias',
-        component: Placeholder,
-        data: { titulo: 'Licencias de Software' },
+        component: Licencias,
         canActivate: [roleGuard('admin', 'gestion_laboratorios')],
       },
       { path: 'horarios', component: Horarios },
