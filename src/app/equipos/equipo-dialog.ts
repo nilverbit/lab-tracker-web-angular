@@ -18,7 +18,7 @@ import { ESTADOS_EQUIPO, TIPOS_EQUIPO, Equipo, Laboratorio, Workstation } from '
   imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   template: `
     <h2 mat-dialog-title>{{ data ? 'Editar' : 'Nuevo' }} Equipo</h2>
-    <mat-dialog-content class="pt-4">
+    <mat-dialog-content class="pt-4"> 
       <form [formGroup]="form" class="grid grid-cols-2 gap-4 min-w-[500px]">
         <mat-form-field appearance="outline">
           <mat-label>Cód. Patrimonial</mat-label>
