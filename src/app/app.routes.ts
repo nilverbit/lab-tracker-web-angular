@@ -1,21 +1,11 @@
 import { Routes } from '@angular/router';
 import { Shell } from './layout/shell';
-import { Login } from './auth/login';
-import { Placeholder } from './shared/placeholder';
-import { Laboratorios } from './laboratorios/laboratorios';
-import { Puestos } from './puestos/puestos';
-import { Equipos } from './equipos/equipos';
-import { TiposEquipo } from './tipos-equipo/tipos-equipo';
-import { Licencias } from './licencias/licencias';
-import { Horarios } from './horarios/horarios';
-import { Alumnos } from './alumnos/alumnos';
-import { Incidentes } from './incidentes/incidentes';
 import { authGuard, guestGuard, roleGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'login',
-    component: Login,
+    loadComponent: () => import('./auth/login').then((m) => m.Login),
     canActivate: [guestGuard],
   },
   {
@@ -24,45 +14,55 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-      { path: 'dashboard', component: Placeholder, data: { titulo: 'Dashboard' } },
-      { path: 'laboratorios', component: Laboratorios },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./dashboard/dashboard').then((m) => m.Dashboard),
+      },
+      {
+        path: 'laboratorios',
+        loadComponent: () => import('./laboratorios/laboratorios').then((m) => m.Laboratorios),
+      },
       {
         path: 'puestos',
-        component: Puestos,
+        loadComponent: () => import('./puestos/puestos').then((m) => m.Puestos),
         canActivate: [roleGuard('admin', 'gestion_laboratorios')],
       },
       {
         path: 'equipos',
-        component: Equipos,
+        loadComponent: () => import('./equipos/equipos').then((m) => m.Equipos),
         canActivate: [roleGuard('admin', 'gestion_laboratorios')],
       },
       {
         path: 'tipos-equipo',
-        component: TiposEquipo,
+        loadComponent: () => import('./tipos-equipo/tipos-equipo').then((m) => m.TiposEquipo),
         canActivate: [roleGuard('admin', 'gestion_laboratorios')],
       },
       {
         path: 'licencias',
-        component: Licencias,
+        loadComponent: () => import('./licencias/licencias').then((m) => m.Licencias),
         canActivate: [roleGuard('admin', 'gestion_laboratorios')],
       },
-      { path: 'horarios', component: Horarios },
+      {
+        path: 'horarios',
+        loadComponent: () => import('./horarios/horarios').then((m) => m.Horarios),
+      },
       {
         path: 'alumnos',
-        component: Alumnos,
+        loadComponent: () => import('./alumnos/alumnos').then((m) => m.Alumnos),
         canActivate: [roleGuard('admin', 'gestion_laboratorios', 'docente')],
       },
-      { path: 'incidentes', component: Incidentes },
+      {
+        path: 'incidentes',
+        loadComponent: () => import('./incidentes/incidentes').then((m) => m.Incidentes),
+      },
       {
         path: 'usuarios',
-        component: Placeholder,
-        data: { titulo: 'Usuarios del Sistema' },
+        loadComponent: () => import('./usuarios/usuarios').then((m) => m.Usuarios),
         canActivate: [roleGuard('admin')],
       },
       {
         path: 'roles',
-        component: Placeholder,
-        data: { titulo: 'Roles y Permisos' },
+        loadComponent: () => import('./roles/roles').then((m) => m.Roles),
         canActivate: [roleGuard('admin')],
       },
     ],
